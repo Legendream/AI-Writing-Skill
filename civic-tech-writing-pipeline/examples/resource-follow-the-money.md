@@ -5,6 +5,7 @@ type: resource
 topics: [錢流監督, 政府預算, 政府標案, 政府補助, 開放資料]
 summary: 整理臺灣「錢流監督」領域的 4 個查詢平台與 4 篇延伸閱讀，供想追蹤政府預算、標案、補助流向的提案者與研究者使用。
 author: Claire Cheng 與 AI 協作編輯
+license: CC BY 4.0, by g0v.tw jothon & Claire Cheng
 本檔性質: 教學用凍結副本
 正本位置: g0v civic tech guide／05_文章產出（待撰寫）/領域資源短文/短文_政府預算決算標案.md
 凍結日期: 2026-08-07（第二輪，含 Claire 對第一輪定稿的批改修訂）
@@ -65,3 +66,7 @@ author: Claire Cheng 與 AI 協作編輯
 ## 資料查核說明
 
 本文資料查核日期：2026-08-07。資料庫、各類工具與社群討論筆記，均有可能在此日期之後更新、變動，請務必自行查核。
+
+## 授權與出處
+
+本文由 g0v 揪松團（jothon）與 Claire Cheng 共同編輯，以 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) 授權釋出，歡迎轉載、改作與 AI 取用，請標示出處。更多台灣公民科技資源見「台灣公民科技資料庫 Civic Tech Taiwan」：https://civictech.tw/
