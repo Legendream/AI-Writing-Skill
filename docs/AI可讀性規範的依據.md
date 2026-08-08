@@ -249,16 +249,35 @@ curl -sL "https://你的文章網址" | grep -oE '<meta name="description" conte
 
 #### 規則：文章開頭放 frontmatter（標題、日期、類型、關鍵字、摘要）
 
-★★☆☆☆｜⚠️ **在主要發布平台上可能無效**｜寫在 `SKILL.md` 與兩份模板
+★☆☆☆☆｜❌ **已證實在 HackMD 上完全無效，非「可能」，附逐字證據**（2026-08-07 更新，
+原標 ★★☆☆☆「可能無效」）｜寫在 `SKILL.md` §6-4 與兩份模板
 
-這條原本假設 frontmatter 會被轉成機器可讀的資訊。**但那完全取決於發布平台。**
+這條原本假設 frontmatter 會被轉成機器可讀的資訊。**這個假設是錯的，而且有明確的失效日期。**
 
-實測發現：HackMD 的摘要是從**內文**開頭截取的，不是取自 frontmatter。
-HackMD 自己認得的欄位是 `title`、`tags`、`description`、`robots`；
-本 skill 要求的 `type`、`topics`、`summary` **不在其列**，很可能被直接忽略。
+**證據一，官方公告**。HackMD 2023-06-12 公告：
 
-**目前的立場**：frontmatter 在檔案管理上仍有價值（可搜尋、可程式處理），
-但**不要假設它對 AI 檢索有幫助**。若平台認得 `tags` 與 `description`，優先用平台的欄位名。
+> Since 2023-06-20, metadata will be stored in HackMD, not within the notes themselves.
+> There are fields in the editor for editing the title and tags. Metadata other than
+> the title and tags can be set in the "Settings" of the notes.
+
+那是一次性遷移：舊筆記的 frontmatter title／tags 被讀一次搬進 HackMD 資料庫，之後新開的
+筆記，frontmatter 寫什麼都不會被套用。
+
+**證據二，實際下載三篇已發布的 `g0v.hackmd.io` 共筆原始碼逐一核對**（`/download` 端點）：
+
+| 筆記 | frontmatter 實際內容 | 標題怎麼來的 |
+|---|---|---|
+| 「民眾參與」藏在哪些制度範疇、標案？ | 只有 `tags: 公民參與`，沒有 `title` | 內文 `# ` 大標題 |
+| 藝文活水向哪流 | 只有 `tags: 藝文活水向哪流`，沒有 `title` | 內文 `# ` 大標題 |
+| 標案開放資料討論 | 只有 `tags: 標案資料`，沒有 `title` | 內文底線式標題 |
+
+三篇一致：frontmatter 只放 `tags`，`title` 完全不存在於任何一篇的 frontmatter 裡，
+筆記標題另外處理。這比「查文件、沒實際測」更進一步，是**直接核對已發布內容的原始碼**。
+
+**目前的立場**：frontmatter **只有本機管理用途**（git 裡搜尋、管理原始檔），對發布出去的
+文章沒有任何作用。標題要在 HackMD 編輯器的標題欄位另外設定；`tags` 若要用也要在筆記的
+Settings 面板另外填。真正會被讀者與 AI 看到的內容，全部得寫在正文裡——這正是
+`SKILL.md` §6-4「文章開頭結構化資訊區塊」取代「本文重點」的原因。
 
 #### 規則：資源清單用固定欄位表格
 
@@ -304,8 +323,9 @@ HackMD 自己認得的欄位是 `title`、`tags`、`description`、`robots`；
 
 原本的 AI 可讀性規範是六條沒有出處的條列。使用者無從判斷哪條在自己的情境值得調整。
 
-現在每條都附機制理由與把握度。**把握度低的那幾條（frontmatter、表格）明講「可能無效」**，
-使用者要為了自己的平台調整時，知道動哪裡風險最低。
+現在每條都附機制理由與把握度。**把握度低的那幾條明講不確定**——表格那條仍是「可能無效」，
+frontmatter 那條在 2026-08-07 從「可能無效」升級成「已證實無效」（見上，附逐字公告與
+三篇實際筆記的原始碼核對）。使用者要為了自己的平台調整時，知道動哪裡風險最低。
 
 ### 影響三：修訂了一條會誤殺好標題的條文
 
@@ -332,8 +352,8 @@ HackMD 自己認得的欄位是 `title`、`tags`、`description`、`robots`；
 |---|---|---|
 | 1 | 文章有沒有被 AI 引用 | 準備 5 到 10 個目標讀者實際會打的問句，分別問 Google AI Overviews、ChatGPT、Perplexity、Claude，記錄有沒有出現我們的文章、引用了哪一段 |
 | 2 | 「問題索引」那節有沒有用 | 第二篇文章刻意不加這一節當對照組，比較兩篇的命中率 |
-| 3 | 引用落在哪個結構位置 | 看被引用的段落是不是「本文重點」或某節開頭。若集中在特定位置，切塊相關的規則就得到支持 |
-| 4 | frontmatter 進不進得去 | 發一篇帶完整 frontmatter 的測試文，`curl` 抓 HTML 看那些欄位在不在 |
+| 3 | 引用落在哪個結構位置 | 看被引用的段落是不是文章開頭結構化資訊區塊或某節開頭。若集中在特定位置，切塊相關的規則就得到支持 |
+| 4 | ~~frontmatter 進不進得去~~ | ✅ **已完成（2026-08-07）**：不是發測試文，而是查到 HackMD 2023-06-12 官方公告＋下載三篇已發布的 `g0v.hackmd.io` 共筆原始碼核對，結論是 frontmatter 已證實完全無效，見上方規則條目 |
 | 5 | 表格 vs 條列 | 同一份資源清單做兩版，看 AI 摘要哪版的欄位對應比較不出錯 |
 
 ### 記錄方式
