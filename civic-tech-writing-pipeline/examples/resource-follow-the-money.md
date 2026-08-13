@@ -7,7 +7,7 @@ summary: 整理臺灣「錢流監督」領域的 4 個查詢平台與 4 篇延�
 author: Claire Cheng 與 AI 協作編輯
 license: CC BY 4.0, by g0v.tw jothon & Claire Cheng
 本檔性質: 教學用凍結副本
-正本位置: g0v civic tech guide／05_文章產出（待撰寫）/領域資源短文/短文_政府預算決算標案.md
+正本位置: g0v civic tech guide／05_文章產出（待撰寫）/領域資源指南/短文_政府預算決算標案.md
 凍結日期: 2026-08-07（第三輪，含 frontmatter 失效的更正與結構化資訊區塊）
 導讀: resource-follow-the-money_導讀.md
 ---

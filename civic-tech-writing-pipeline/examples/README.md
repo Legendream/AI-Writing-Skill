@@ -3,7 +3,7 @@
 此資料夾存放兩種文體的實際範例，作為新貢獻者動筆前的參考。每種類型至少一篇：
 
 - `methodology-*.md`：方法論長文範例
-- `resource-*.md`：領域資源短文範例
+- `resource-*.md`：領域資源指南範例
 - `*_導讀.md`：搭配範例的導讀，指出這篇示範了 `SKILL.md` 的哪些條文
 
 範例文章與模板（`templates/`）搭配使用：**模板告訴你結構，範例告訴你寫出來長什麼樣子，
@@ -13,7 +13,7 @@
 
 | 範例 | 類型 | 導讀 |
 |---|---|---|
-| `resource-follow-the-money.md`《政府的錢花去哪了？》 | B 領域資源短文 | `resource-follow-the-money_導讀.md` |
+| `resource-follow-the-money.md`《政府的錢花去哪了？》 | B 領域資源指南 | `resource-follow-the-money_導讀.md` |
 
 方法論長文範例待該文體首篇通過驗收後補上。
 
