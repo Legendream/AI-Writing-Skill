@@ -1,0 +1,67 @@
+name: 打包 skill 並更新下載連結
+
+# 為什麼要這支 workflow：
+# 說明頁上的下載連結必須永遠指到最新版的 skill。
+# 手動打包一定會忘記，試用者就會下載到舊版、回報早就修掉的問題。
+# 所以改動 skill 資料夾時自動重新打包，頁面不需要跟著改。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'civic-tech-writing-pipeline/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # claude.ai 要求 zip 的根目錄就是 skill 資料夾本身（不是把檔案直接放 zip 根，
+      # 也不是包一層 repo 名稱）。
+      #
+      # 用 Python 的 zipfile 而不是 shell 的 zip 指令：實測發現 Info-ZIP 的 zip
+      # 在部分平台（含 macOS 內建版本）不會替中文檔名設定 UTF-8 旗標，檔名會變亂碼，
+      # 讀取端若不是剛好用同一種舊編碼猜測，就打不開對到的檔案。
+      # Python 3.7+ 的 zipfile 對非 ASCII 檔名會自動設定該旗標，行為穩定、不吃 runner 的
+      # zip 版本或 locale 設定。
+      - name: 打包（skill 資料夾為 zip 根目錄，強制 UTF-8 檔名）
+        run: |
+          python3 - <<'PY'
+          import zipfile, os
+
+          src = "civic-tech-writing-pipeline"
+          out = "civic-tech-writing-pipeline.zip"
+
+          with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+              for root, dirs, files in os.walk(src):
+                  for f in files:
+                      if f == ".DS_Store":
+                          continue
+                      full = os.path.join(root, f)
+                      z.write(full, full)
+
+          z = zipfile.ZipFile(out)
+          bad = [
+              i.filename for i in z.infolist()
+              if not (i.flag_bits & 0x800) and not i.filename.isascii()
+          ]
+          if bad:
+              raise SystemExit(f"發現非 ASCII 檔名卻沒有 UTF-8 旗標，打包中止：{bad}")
+
+          print(f"打包完成，共 {len(z.infolist())} 個檔案，根目錄：{z.namelist()[0]}")
+          PY
+
+      - name: 更新 latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view latest >/dev/null 2>&1 || \
+            gh release create latest \
+              --title "最新版" \
+              --notes "下載 civic-tech-writing-pipeline.zip，上傳到 claude.ai 即可使用。此檔隨 skill 改動自動更新。"
+          gh release upload latest civic-tech-writing-pipeline.zip --clobber
