@@ -41,6 +41,8 @@
 ## 資料夾地圖
 
 ```
+SKILL.md                         ← 【路標】不是流程本體，指向下面那份
+
 civic-tech-writing-pipeline/     ← 【交付主體】整個資料夾就是 skill，要用就複製它
 ├── SKILL.md                     流程本體：文章類型、階段門檻、查核關卡、格式規範
 ├── 發布指引.md                   文章放哪裡才被人與 AI 找得到（含平台實測比較）
@@ -102,6 +104,26 @@ agents/                          ← 【選配加值】Claude Code 用的驗收�
 **Gemini**：作法相同，可貼進對話，或建立 Gem 並上傳檔案。
 
 **不用 AI**：`checklists/` 可以當人工檢查表，`templates/` 可以當寫作大綱，流程本身是工具中立的。
+
+### 交接給另一個 AI 時，直接複製這段
+
+口述路徑很容易漏掉中間那層資料夾（實際發生過：說成 `AI-Writing-Skill/SKILL.md`，
+接手的 AI 在根目錄找不到而卡住）。要交接時複製底下這段貼過去，不要憑記憶打路徑：
+
+```
+請依 civic-tech-writing-pipeline/SKILL.md 的流程與階段門檻協作寫文章。
+
+入口與讀取順序：
+1. civic-tech-writing-pipeline/SKILL.md（流程本體，先讀「開始前必問」與「文章類型」）
+2. civic-tech-writing-pipeline/templates/（選定類型後複製對應模板）
+3. civic-tech-writing-pipeline/checklists/（交付前驗收條件，動筆前先看一遍）
+4. civic-tech-writing-pipeline/發布指引.md（發布前才需要）
+
+注意：SKILL.md 不在 repo 根目錄，根目錄那份只是路標。
+強制產物（讀後憑證、查核總表、檢索詞實測、規則提案清單）不可省略。
+```
+
+（根目錄另有一份 [`SKILL.md`](SKILL.md) 路標，指向真正的入口，供直接找根目錄的 AI 使用。）
 
 ### 跨工具使用要注意兩件事
 
