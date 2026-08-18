@@ -195,30 +195,49 @@
   <span class="tag">公民科技知識庫寫作</span>
   <h1>把編輯寫作的流程拆開，<br>哪幾段交給 AI、哪幾段一定要人自己判斷</h1>
   <p class="lede">
-    這是給正在寫公民科技知識庫文章的人用的一套協作方式。
-    素材整理、大綱、初稿由 AI 做；事實查核的最終把關、風格品味、要不要發表，一律由人決定。
-    下面兩條路徑，看你平常怎麼用電腦，挑一條照做就好。
+    給正在寫公民科技知識庫文章的人。素材整理、大綱、初稿交給 AI；
+    事實查核的最終把關、風格品味、要不要發表，一律由人決定。
   </p>
 
   <h2>這能幫你做什麼</h2>
   <p>
-    寫一篇「格式一致、事實可查證、人和 AI 都容易找到」的公民科技文章，通常要重複走過
-    同一輪動作：讀素材、排大綱、寫草稿、一條一條核對事實、調語氣、交出去。
-    這套流程把這幾段拆開，寫清楚每一段誰該做什麼、AI 做完之後人要怎麼核對——
-    不是「丟素材進去、生出一篇文章」，AI 中途會停下來問你問題、要你確認方向。
+    寫一篇「格式一致、事實可查證、人和 AI 都容易找到」的文章，通常要重複走過同一輪動作：
+    讀素材、排大綱、寫草稿、核對事實、調語氣、交出去。這套流程把每一段拆開，
+    寫清楚誰該做什麼、AI 做完之後人要怎麼核對。
   </p>
   <p>
-    如果你要的是「按一個鈕就自動生成」，這套東西不適合你；
-    如果你願意在幾個關鍵點上自己拍板，它能省下大量排版、盤點、初稿的力氣。
+    <strong>不是「丟素材進去、生出一篇文章」。</strong>
+    AI 中途會停下來問你問題，要你確認方向。想要按一個鈕就自動生成，這套不適合你；
+    願意在幾個關鍵點上自己拍板，它能省下大量排版、盤點、初稿的力氣。
   </p>
+
+  <h2>怎麼進行：六個階段</h2>
+  <div class="card">
+    <ol>
+      <li><strong>素材盤點</strong>——讀素材，AI 交出讀過的證明，不用標題硬拼</li>
+      <li><strong>大綱</strong>——排出文章結構</li>
+      <li><strong>初稿</strong>——AI 寫草稿，每個事實標出處</li>
+      <li><strong>事實查核</strong>——逐條核對，標示查證等級</li>
+      <li><strong>風格套用</strong>——調整語氣</li>
+      <li><strong>交付前驗收</strong>——換一雙沒看過過程的眼睛再放行</li>
+    </ol>
+    <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;">
+      前一站沒做完，AI 不會自己跳到下一站。
+    </p>
+  </div>
 
   <h2>開始前你要準備什麼</h2>
   <div class="card">
     <ul>
-      <li>一個 <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> 帳號——<strong>免費版就能用</strong>，不需要付費升級</li>
-      <li>帳號設定裡要開啟「Code execution」（程式碼執行）這個選項，上傳的協作流程才能運作</li>
-      <li>你想寫的文章素材（連結、文件、訪談筆記，先整理在手邊即可，不用先讀完）</li>
+      <li>一個你平常在用的 AI 聊天工具帳號（Claude、ChatGPT、Gemini 都可以——
+        規則文字本身沒有綁定特定 AI 品牌）</li>
+      <li>你想寫的文章素材（連結、文件、訪談筆記，先整理好即可，不用先讀完）</li>
     </ul>
+    <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;">
+      claude.ai 目前是唯一能「一次上傳整包規則」的工具，下面路徑一是它的做法。
+      用其他 AI 工具，把 <code>civic-tech-writing-pipeline/</code> 資料夾的內容貼給它，
+      一樣能照這套方式協作，只是沒有一鍵安裝。
+    </p>
   </div>
 
   <h2>兩條路徑，挑一條</h2>
@@ -229,25 +248,26 @@
       <h3>下載後上傳到 claude.ai</h3>
       <ol>
         <li>點下方按鈕，下載一個壓縮檔（zip）</li>
-        <li>打開 claude.ai，進入「設定 → Capabilities」</li>
+        <li>打開 claude.ai，進入「設定 → Capabilities」，
+          確認「Code execution」（程式碼執行）已開啟——<strong>免費版就有這個選項</strong></li>
         <li>把剛才下載的 zip 上傳上去——<br>
-          claude.ai 把這種可以整包安裝的工作方式叫做「<strong>Skill</strong>」，
-          你會在介面上看到這個字，就是指這份東西</li>
-        <li>開一個新對話，跟 Claude 說你想寫一篇公民科技相關的文章</li>
+          claude.ai 把這種整包安裝的工作方式叫做「<strong>Skill</strong>」，
+          介面上看到這個字，指的就是這份東西</li>
+        <li>開新對話，跟 Claude 說你想寫一篇公民科技相關的文章</li>
       </ol>
       <a class="btn" href="https://github.com/Legendream/AI-Writing-Skill/releases/latest/download/civic-tech-writing-pipeline.zip">下載 civic-tech-writing-pipeline.zip</a>
       <p style="font-size:0.85rem; color:var(--text-dim); margin-top:10px;">
-        這個檔案會隨內容更新自動換新，網址不會變，不用回來找新版。
+        內容更新時這個檔案會自動換新，網址不變。
       </p>
     </div>
 
     <div class="path-card">
       <div class="path-label">路徑二・已經會用 Claude Code / git 的人</div>
       <h3>直接 clone repo</h3>
-      <p>整個流程與規則沿革都在這個 repo，clone 下來自己接：</p>
+      <p>整個流程與規則沿革都在這個 repo：</p>
       <div class="code-block">git clone https://github.com/Legendream/AI-Writing-Skill.git</div>
       <p style="font-size:0.9rem;">
-        入口在 repo 根目錄的 <code>SKILL.md</code>，會指到實際要用的
+        入口在根目錄的 <code>SKILL.md</code>，會指到實際要用的
         <code>civic-tech-writing-pipeline/</code> 資料夾。
       </p>
       <a class="btn-secondary" href="https://github.com/Legendream/AI-Writing-Skill" target="_blank" rel="noopener">前往 GitHub repo</a>
@@ -257,31 +277,32 @@
 
   <h2>裝完之後，你會看到什麼</h2>
   <div class="card">
-    <p>照路徑一做完、開新對話問 Claude 之後，如果一切正常，Claude 不會立刻開始寫，
-      而是會先問你類似這樣的問題：</p>
+    <p>照路徑一做完、開新對話後，Claude 不會立刻動筆，而是先問類似這樣的問題：</p>
     <ul>
       <li>「這篇的主題與素材範圍是什麼？」</li>
       <li>「手上已經有哪些素材？」</li>
       <li>「有沒有想參考的範文，或想要的語氣？」</li>
     </ul>
     <p>
-      <strong>看到它先問問題，就代表裝成功了。</strong>
-      如果它直接開始生一篇文章、完全不問你任何事，代表沒有讀取到協作流程，
-      回頭確認一下第 3 步是不是真的上傳成功。
+      <strong>先問問題，就代表裝成功了。</strong>
+      如果它直接開始生文章、完全不問，回頭確認第 3 步是不是真的上傳成功。
     </p>
   </div>
 
-  <h2>實際成品長什麼樣</h2>
+  <h2>看一篇實際寫出來的文章</h2>
   <p>
-    這套流程實際產出的文章，包含完整的素材盤點紀錄與事實查核過程，都公開在 repo 裡：
+    含完整的素材盤點紀錄與事實查核過程，公開在 repo 裡：
   </p>
-  <a class="btn-secondary" href="https://github.com/Legendream/AI-Writing-Skill/tree/main/civic-tech-writing-pipeline/examples" target="_blank" rel="noopener">看範例文章</a>
+  <!-- 直接連到目前唯一一篇範例，讓使用者點開就看到文章本身，不用進資料夾找。
+       examples/ 之後會收錄更多篇（方法論長文），屆時這裡要改成連到
+       examples/README.md 的範例列表，或换成一個更能代表多篇的入口。 -->
+  <a class="btn-secondary" href="https://github.com/Legendream/AI-Writing-Skill/blob/main/civic-tech-writing-pipeline/examples/resource-follow-the-money.md" target="_blank" rel="noopener">看範例：《政府的錢花去哪了？》</a>
 
   <h2>用完了，告訴我們卡在哪</h2>
   <div class="card">
     <p>
-      這套流程還在持續調整。如果你試用時卡住、看不懂某個詞、或裝了但沒有照預期運作，
-      花兩分鐘填一下這個表單，會直接影響下一版怎麼改。
+      這套流程還在調整。卡住、看不懂某個詞、或裝了但沒照預期運作，
+      花兩分鐘填這個表單，會直接影響下一版怎麼改。
     </p>
     <a class="btn placeholder" href="＿回饋表單網址＿" target="_blank" rel="noopener">填寫回饋表單（待補表單網址）</a>
   </div>
