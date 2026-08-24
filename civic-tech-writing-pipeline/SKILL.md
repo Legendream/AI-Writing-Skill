@@ -11,6 +11,12 @@ description: >
 
 # 公民科技知識庫寫作技能（人機協同 pipeline）
 
+> ⚠️ **本檔與 `checklists/` 裡所有指向 `docs/` 的路徑，只在
+> [AI-Writing-Skill](https://github.com/Legendream/AI-Writing-Skill) 原始 repo 裡讀得到。**
+> 這個 skill 若以 symlink 掛載到其他寫作專案（例如 `.claude/skills/civic-tech-writing-pipeline`），
+> 掛載範圍只到本資料夾這一層，`docs/` 不在裡面，路徑會解析失敗。要查任何一條規則的
+> 立規緣由，回 AI-Writing-Skill repo 查閱，不要假設掛載環境裡讀得到。
+
 ## 概述與適用範圍
 
 此技能協助「人＋AI」協作產製公民科技知識庫的文章。分工原則：
