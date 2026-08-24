@@ -21,6 +21,8 @@
     --accent: #2f6f4f;
     --accent-bg: #eaf3ec;
     --code-bg: #f2f0eb;
+    --you: #b5581f;
+    --you-bg: #fdeee3;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -33,6 +35,8 @@
       --accent: #6fbf94;
       --accent-bg: #223028;
       --code-bg: #2a2c26;
+      --you: #e0a06a;
+      --you-bg: #3a2a1c;
     }
   }
 
@@ -155,6 +159,48 @@
     margin-top: 8px;
   }
 
+  /* 六階段分工：每站用同一個視覺樣式（編號＋兩行角色），
+     讓讀者掃過去就能分辨「AI 做的」跟「你做的」，不用逐句讀 */
+  .stage-row {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 10px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stage-row:first-child { padding-top: 0; }
+  .stage-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .stage-num {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding-top: 2px;
+  }
+
+  .stage-title { font-weight: 600; margin-bottom: 8px; }
+
+  .stage-who {
+    display: flex;
+    gap: 8px;
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+  }
+  .stage-who:last-child { margin-bottom: 0; }
+
+  .who-badge {
+    flex-shrink: 0;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 999px;
+    min-width: 28px;
+    text-align: center;
+  }
+  .who-ai { background: var(--accent-bg); color: var(--accent); }
+  .who-you { background: var(--you-bg); color: var(--you); }
+
   code, .code-block {
     font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
     font-size: 0.88rem;
@@ -212,18 +258,78 @@
     盤點、寫初稿的力氣。
   </p>
 
-  <h2>怎麼進行：六個階段</h2>
+  <h2>怎麼進行：六個階段，每站分清楚誰做什麼</h2>
   <div class="card">
-    <ol>
-      <li><strong>素材盤點</strong>：讀素材，AI 交出讀過的證明，不用標題硬拼</li>
-      <li><strong>大綱</strong>：排出文章結構</li>
-      <li><strong>初稿</strong>：AI 寫草稿，每個事實標出處</li>
-      <li><strong>事實查核</strong>：逐條核對，標示查證等級</li>
-      <li><strong>風格套用</strong>：調整語氣</li>
-      <li><strong>交付前驗收</strong>：換一雙沒看過過程的眼睛再放行</li>
-    </ol>
-    <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;">
-      每一站做完，AI 才會進下一站，不會自己搶著往下衝。
+
+    <div class="stage-row">
+      <div class="stage-num">1</div>
+      <div>
+        <div class="stage-title">素材盤點</div>
+        <div class="stage-who"><span class="who-badge who-ai">AI</span>
+          逐篇讀素材，交出讀過的證明，不是看標題腦補</div>
+        <div class="stage-who"><span class="who-badge who-you">你</span>
+          素材不夠時，決定要縮小主題還是再找素材</div>
+      </div>
+    </div>
+
+    <div class="stage-row">
+      <div class="stage-num">2</div>
+      <div>
+        <div class="stage-title">大綱</div>
+        <div class="stage-who"><span class="who-badge who-ai">AI</span>
+          排出章節結構，並列出關鍵詞的檢索結果</div>
+        <div class="stage-who"><span class="who-badge who-you">你</span>
+          確認方向對不對、關鍵詞選得好不好，才會往下走</div>
+      </div>
+    </div>
+
+    <div class="stage-row">
+      <div class="stage-num">3</div>
+      <div>
+        <div class="stage-title">初稿</div>
+        <div class="stage-who"><span class="who-badge who-ai">AI</span>
+          把大綱寫成文章，每個事實旁邊標出處</div>
+        <div class="stage-who"><span class="who-badge who-you">你</span>
+          這站先不用你出手，等 AI 寫完</div>
+      </div>
+    </div>
+
+    <div class="stage-row">
+      <div class="stage-num">4</div>
+      <div>
+        <div class="stage-title">事實查核</div>
+        <div class="stage-who"><span class="who-badge who-ai">AI</span>
+          逐條核對出處，標示每項查證的可信程度</div>
+        <div class="stage-who"><span class="who-badge who-you">你</span>
+          查證程度偏低的內容，由你做最後判斷</div>
+      </div>
+    </div>
+
+    <div class="stage-row">
+      <div class="stage-num">5</div>
+      <div>
+        <div class="stage-title">風格套用</div>
+        <div class="stage-who"><span class="who-badge who-ai">AI</span>
+          依你給的風格檔或範文，調整全文語氣</div>
+        <div class="stage-who"><span class="who-badge who-you">你</span>
+          開始前先給範文，或說清楚你想要的語氣</div>
+      </div>
+    </div>
+
+    <div class="stage-row">
+      <div class="stage-num">6</div>
+      <div>
+        <div class="stage-title">交付前驗收</div>
+        <div class="stage-who"><span class="who-badge who-ai">AI</span>
+          換一個沒看過草稿過程的「乾淨」AI 重新挑錯</div>
+        <div class="stage-who"><span class="who-badge who-you">你</span>
+          決定要不要接受驗收結果、要不要發表</div>
+      </div>
+    </div>
+
+    <p style="font-size:0.9rem; color:var(--text-dim); margin:16px 0 0;">
+      每一站做完才會進下一站，AI 不會自己搶著往下衝——但最後為文章負責的是你，
+      AI 整理出來的都算草稿，交付前的查證還是要靠你自己動手。
     </p>
   </div>
 
