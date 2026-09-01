@@ -31,6 +31,28 @@ START_MARKER = "<!-- 驗收員可讀:開始 -->"
 END_MARKER = "<!-- 驗收員可讀:結束 -->"
 
 
+# 條文本體裡的改動履歷：正本要留（維護者靠它知道某條什麼時候立的、為什麼改），
+# 驗收員不需要——他要驗的是條文現在說什麼，不是它怎麼變成現在這樣。
+# 只濾「內容純粹是改動註記」的括號，帶操作資訊的日期（例如「本 skill 自 2026-08-12
+# 起不使用 frontmatter」）不在此列，因為它們不在括號裡。
+CHANGE_NOTE = re.compile(
+    r"（20\d\d-\d\d-\d\d[^（）]{0,80}?"
+    r"(?:新增|擴充|改寫|補充|取消|合併|縮減|修正|同步|放寬|定為強制|起強制|收窄)"
+    r"[^（）]{0,80}?）"
+)
+# 「（已併入第 N 條⋯）」的空殼條：號碼原地保留是維護慣例，驗收員只要知道跳過即可
+MERGED_SHELL = re.compile(r"（已併入第 [\d、]+ 條[^（）]{0,60}）")
+
+
+def strip_change_annotations(body: str) -> str:
+    body = CHANGE_NOTE.sub("", body)
+    body = MERGED_SHELL.sub("（已併入其他條，跳過）", body)
+    # 括號拿掉後可能留下行尾空白。只清空白，不動任何標點——
+    # 曾經寫過 `，。` → `。` 的清理，把第 34 條全形標點清單裡的逗號吃掉了。
+    body = re.sub(r"[ \t]+\n", "\n", body)
+    return body
+
+
 def generate(src_path: Path) -> str:
     lines = src_path.read_text(encoding="utf-8").splitlines()
 
@@ -57,6 +79,7 @@ def generate(src_path: Path) -> str:
         kept.append(line)
 
     body = "\n".join(kept)
+    body = strip_change_annotations(body)
     body = re.sub(r"\n{3,}", "\n\n", body)
 
     title_line = next((l for l in lines if l.startswith("# ")), "# 驗收條件")
