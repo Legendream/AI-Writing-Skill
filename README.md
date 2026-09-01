@@ -64,7 +64,7 @@
 > 在免費版使用，官方兩份文件記載不一致（說明中心寫含 Free，開發者文件寫 Pro 以上，
 > 2026-09-01 查證）。如果設定裡找不到 Skills 頁面，可能是方案限制。
 
-### 路徑二・已經會用 Claude Code 或 git 的人
+### 路徑二・會用 Claude Code、Antigravity 或 git 的人
 
 ```bash
 git clone https://github.com/Legendream/AI-Writing-Skill.git
@@ -81,8 +81,9 @@ git clone https://github.com/Legendream/AI-Writing-Skill.git
 
 ### 用其他 AI 工具
 
-claude.ai 可以一次上傳整包規則（就是上面路徑一的 zip）。用別的工具要手動把內容貼進去，
-一樣能照這套方式協作，只是少了一鍵安裝的方便：
+**不是只有 claude.ai 能整包安裝。** Claude Code、Antigravity 這類讀得到檔案的工具，
+用上面的路徑二 clone 整個 repo 就是完整安裝，不必貼任何東西。
+真正需要手動貼內容的，是沒有整包安裝機制的純聊天介面：
 
 - **ChatGPT**：單次使用把 `civic-tech-writing-pipeline/SKILL.md`（不是根目錄那份路標）
   與所選模板貼進對話；重複使用可建立 Custom GPT，把該份 `SKILL.md` 與 `templates/`
