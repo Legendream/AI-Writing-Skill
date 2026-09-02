@@ -54,12 +54,16 @@
 
 ## 怎麼裝：兩條路徑，挑一條
 
+- **路徑一**：全程在瀏覽器裡，電腦上什麼都不用裝
+- **路徑二**：你電腦上要先有一個 AI 工具（Claude Code、Antigravity 這類）
+
 ### 路徑一・約 3 分鐘・不需要懂程式
 
 **開始前先確認兩件事：**
 
 - **方案**：上傳自訂 skill 需要 claude.ai **Pro 以上**
-  （依 Claude 開發者文件，2026-09-02 查證）
+  （依 [Claude 開發者文件](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)，
+  2026-09-02 查證）
 - **設定**：到 <https://claude.ai/settings/capabilities>，
   把「**Code execution and file creation**」打開。要開這個，是因為整包規則是用檔案的
   形式運作的——沒開的話 zip 解不開、讀不到裡面的檔
@@ -72,25 +76,37 @@
    指的就是這份東西。找不到這個頁面的話，直接在設定裡搜尋 `Skills`
 3. 開新對話，跟 Claude 說「**我想寫一篇公民科技相關的文章**」
 
-### 路徑二・會用 Claude Code、Antigravity 或 git 的人
+### 路徑二・讓 AI 自己去抓（電腦上有 Claude Code、Antigravity 這類工具的人）
 
-```bash
-git clone https://github.com/Legendream/AI-Writing-Skill.git
-```
+開一個資料夾，跟 AI 說一句話：
 
-（**repo** 是 GitHub 上存放一整套檔案的地方；**clone** 是把它整包複製到你自己的電腦。）
+> 請你把這個 repo 抓到這裡：https://github.com/Legendream/AI-Writing-Skill
 
-入口在根目錄的 [`SKILL.md`](SKILL.md)——它只是路標，會指到真正要用的
-`civic-tech-writing-pipeline/` 資料夾。
+（**repo** 就是 GitHub 上存放一整套檔案的地方，這裡指的就是上面那個網址。）
 
-**Claude Code**：把 `civic-tech-writing-pipeline/` 複製到 `~/.claude/skills/`，
-之後提到「寫方法論文章」「整理資源清單」等需求時會自動觸發。
-另可安裝 [`agents/article-reviewer.md`](agents/article-reviewer.md) 把交付前驗收自動化。
+**2026-08-18 我們就是這樣把它交給 Antigravity 的**，後續跑完了一整篇文章。
+你只要打這一句，抓檔案的事交給 AI 做。
+
+抓完之後，**每次開始寫的時候跟 AI 說一句**：
+
+> 照你剛抓下來那包裡的 `civic-tech-writing-pipeline/SKILL.md` 進行
+
+**「你剛抓下來那包裡」這幾個字要講**，它幫 AI 定位。抓下來會多一層以 repo 命名的
+資料夾，講清楚了它才找得到。那包的最外層還有一份同名的 `SKILL.md`，那只是路標，
+真正的流程在 `civic-tech-writing-pipeline/` 資料夾裡。
+
+**每次都要講，覺得麻煩的話**，可以請 AI 把 `civic-tech-writing-pipeline` 資料夾
+放進你的 skills 資料夾（Claude Code 是 `~/.claude/skills/`，Antigravity 是
+`~/.gemini/config/skills/`）。放進去之後，你說想寫文章它就會自己叫出來。
+**這個做法我們還沒實測**；上面那條抓到一般資料夾的做法才是驗證過的。
+
+這包裡還附了一份檢查員設定檔（[`agents/article-reviewer.md`](agents/article-reviewer.md)），
+用 Claude Code 的話可以派它幫你做交付前的獨立檢查。
 
 ### 用其他 AI 工具
 
 **不是只有 claude.ai 能整包安裝。** Claude Code、Antigravity 這類讀得到檔案的工具，
-用上面的路徑二 clone 整個 repo 就是完整安裝，不必貼任何東西。
+用上面的路徑二就能裝起來，不需要把規則內容貼進對話。
 真正需要手動貼內容的，是沒有 skill 安裝機制的純聊天介面。
 **底下這兩種做法我們都沒有實測過**，列出來是給你自己試的起點，不是我們驗證過的路徑：
 
@@ -124,7 +140,10 @@ git clone https://github.com/Legendream/AI-Writing-Skill.git
 
 #### 跨工具使用要注意兩件事
 
-1. 其他工具沒有 Claude 的技能自動觸發機制，每次開始要明確指示「照這份流程進行」
+1. 用路徑二把 repo 抓到一般資料夾的話，AI 不會自動認出這套流程，
+   **每次開始要明確指示「照這份流程進行」**。
+   （Claude Code 與 Antigravity 都有各自的 skills 資料夾，放進去應該就會自動觸發，
+   但**這個做法我們還沒實測**，見路徑二的進階做法。）
 2. 流程中兩個環節依賴 AI 的工具能力：「讀後憑證」需要能實際連網讀取來源；
    「範圍型陳述的資料層抽驗」需要能下載檔案並執行程式。
    **若你的工具做不到，流程不會失效**——依據等級規則會自動把這類陳述留在需人工處理的等級
@@ -153,7 +172,7 @@ git clone https://github.com/Legendream/AI-Writing-Skill.git
 每一站結尾都會出現。**有這一行就是裝成功了**，沒有就是沒觸發到——
 回頭確認路徑一的第 2 步，zip 是不是真的上傳好了。
 
-**路徑二（clone）也用同一個判準**——這行來自規則本身，跟你用哪一種裝法無關。
+**路徑二也用同一個判準**——這行來自規則本身，跟你用哪一種裝法無關。
 
 > 📌 如果你的帳號裡還裝了其他寫作類的 skill，它們可能會搶走觸發。
 > 介面上那行灰色的「讀取⋯⋯」標籤**不可靠**——它的文字是臨時生成的，
@@ -263,8 +282,9 @@ AI 整理出來的都算草稿，最後為文章負責的是你。
 
 | 狀況 | 怎麼辦 |
 |---|---|
-| AI 有問我問題，但回覆最後一行沒有「下一站：⋯」 | **沒觸發到這個 skill**。可能被帳號裡其他寫作 skill 搶走了——到 <https://claude.ai/customize/skills> 把其他寫作類 skill 暫時關掉再試 |
+| 走**路徑一**，AI 有問我問題，但最後一行沒有「下一站：⋯」 | **沒觸發到這個 skill**，可能被帳號裡其他寫作 skill 搶走了。到 <https://claude.ai/customize/skills> 把其他寫作類 skill 暫時關掉再試 |
 | AI 直接開始寫，完全不問我問題 | 沒裝成功，回頭確認路徑一第 2 步，zip 是不是真的上傳好了 |
+| 走**路徑二**，AI 沒有照流程走 | 抓到一般資料夾的做法**不會自動觸發**，每次開始要跟它說那句話。已經說了還是沒走，多半是它找不到檔案：請它「先把 `SKILL.md` 開頭那段唸給我聽」，唸不出來就是路徑不對，請它自己找出正確路徑再重講一次 |
 | 素材不夠，硬寫不出來 | 看 [`civic-tech-writing-pipeline/SKILL.md`](civic-tech-writing-pipeline/SKILL.md) §1-4，**不要硬寫**——那一節講的就是素材不足時該縮小主題還是再找 |
 | 不懂某條規則為什麼要這樣規定 | 看 [`docs/`](docs/)，每條規則都能找到它對應的那次犯錯 |
 | 文章發出去了，但搜不到 | 看 [`發布指引.md`](civic-tech-writing-pipeline/發布指引.md) 第二、三節，自己測三個硬門檻 |
