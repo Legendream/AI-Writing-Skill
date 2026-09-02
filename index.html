@@ -233,6 +233,25 @@
     color: #b5451f;
     border: 1px dashed #b5451f;
   }
+
+  /* 「開始前你要準備什麼」的工具對照表。深色模式的框線走 --border，
+     不要寫死顏色，否則暗底會看不見。 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin: 10px 0 14px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--code-bg);
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
@@ -392,16 +411,43 @@
   <h2>開始前你要準備什麼</h2>
   <div class="card">
     <ul>
-      <li>一個你平常在用的 AI 聊天工具帳號就可以，Claude、ChatGPT、Gemini 都行，
-        這套規則本身沒有綁定特定品牌</li>
-      <li>你想寫的文章素材，連結、文件、訪談筆記，先整理好即可，不用先讀完</li>
+      <li><strong>一個裝得起來的 AI 工具</strong>——不是每一種都一樣，見下表</li>
+      <li><strong>你想寫的文章素材</strong>：連結、文件、訪談筆記，先整理好即可，不用先讀完</li>
+      <li><strong>一篇你喜歡的範文，或你以前寫過的文章</strong>：當作風格的起點。
+        沒有也能開始，只是 AI 調語氣時比較沒方向</li>
+      <li><strong>想清楚這篇要給誰看</strong>：寫給同溫層內行人，跟寫給第一次接觸的人，
+        整篇的結構會不一樣，這件事越早定越省事</li>
     </ul>
+    <p style="margin-bottom:6px;">哪些工具真的用得起來，以下是我們自己實測到的狀況：</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>工具</th><th>怎麼裝</th><th>我們實測到什麼</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>claude.ai</strong><br>（Pro 以上）</td>
+          <td>上傳 zip 裝成 Skill<br>（路徑一）</td>
+          <td>✅ <strong>2026-09-02 實測可用</strong>。用下面路徑一教的那句話實測，
+            會先問主題與素材才動筆，不會直接開寫</td>
+        </tr>
+        <tr>
+          <td><strong>Claude Code、Antigravity</strong><br>等讀得到檔案的工具</td>
+          <td>clone 整個 repo<br>（路徑二）</td>
+          <td>⚠️ 2026-08-18 用 Antigravity 測過，<strong>流程跑得完，但獨立驗收沒過</strong>——
+            66 條驗收條件有 19 條未通過，問題集中在事實查核。
+            換句話說：裝得起來，但交付前那道獨立驗收不能省</td>
+        </tr>
+        <tr>
+          <td><strong>ChatGPT、Gemini</strong></td>
+          <td>沒有會自動觸發的<br>skill 安裝機制</td>
+          <td>❌ <strong>我們沒有實測過</strong>，所以不列為安裝路徑。
+            可以把 <code>checklists/</code> 當成自己用的人工檢查表</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
     <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;">
-      裝法看你用哪一類工具，三種都能照這套方式協作：<strong>claude.ai</strong> 這類純聊天介面，
-      一次上傳整包規則（下面的路徑一）；<strong>Claude Code、Antigravity 這類讀得到檔案的工具</strong>，
-      直接 clone 整個 repo，把 <code>civic-tech-writing-pipeline/</code> 資料夾指給它就行
-      （下面的路徑二）；<strong>ChatGPT、Gemini</strong> 沒有整包安裝的機制，把資料夾內容貼進對話，
-      或上傳為知識檔。
+      📌 路徑一需要 Pro 以上方案。免費版可以使用 claude.ai 內建的 skill，
+      <strong>上傳自訂 skill 從 Pro 開始</strong>（依 Claude 開發者文件，2026-09-02 查證）。
     </p>
   </div>
 
@@ -411,22 +457,23 @@
     <div class="path-card">
       <div class="path-label">路徑一・約 3 分鐘・不需要懂程式</div>
       <h3>下載後上傳到 claude.ai</h3>
+      <p style="margin-bottom:6px;"><strong>開始前先確認兩件事：</strong></p>
+      <ul style="margin-top:0;">
+        <li><strong>方案</strong>：上傳自訂 skill 需要 claude.ai <strong>Pro 以上</strong>
+          （依 Claude 開發者文件，2026-09-02 查證）</li>
+        <li><strong>設定</strong>：到
+          <a href="https://claude.ai/settings/capabilities" target="_blank" rel="noopener">claude.ai/settings/capabilities</a>，
+          把「<strong>Code execution and file creation</strong>」打開。
+          <br>要開這個，是因為整包規則是用檔案的形式運作的——沒開的話 zip 解不開、讀不到裡面的檔</li>
+      </ul>
       <ol>
         <li>點下方按鈕，下載一個壓縮檔（zip）</li>
-        <li>打開 claude.ai，進入「設定 → Capabilities」，
-          確認「Code execution」（程式碼執行）已經開啟，<strong>免費版就有這個選項</strong></li>
-        <li>到設定裡的「<strong>Skills</strong>」頁面，上傳剛才下載的 zip。claude.ai 把這種
-          整包安裝的工作方式叫做「<strong>Skill</strong>」，介面上看到這個字，指的就是這份東西。
-          <br><strong>⚠️ 這裡跟第 2 步不是同一個位置</strong>：Capabilities 是開啟程式碼執行的地方，
-          上傳 skill 在另一頁。官方文件出現過「Customize → Skills」與「Settings → Features」
-          兩種路徑名稱，找不到就直接在設定裡搜尋 <code>Skills</code></li>
-        <li>開新對話，跟 Claude 說你想寫一篇公民科技相關的文章</li>
+        <li>開 <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">claude.ai/customize/skills</a>，
+          把剛才下載的 zip 上傳上去。claude.ai 把這種整包安裝的工作方式叫做
+          「<strong>Skill</strong>」，介面上看到這個字，指的就是這份東西。
+          <br>找不到這個頁面的話，直接在設定裡搜尋 <code>Skills</code></li>
+        <li>開新對話，跟 Claude 說「<strong>我想寫一篇公民科技相關的文章</strong>」</li>
       </ol>
-      <p style="font-size:0.85rem; color:var(--text-dim); margin-top:10px;">
-        📌 第 2 步的「Code execution」免費版就有。但<strong>上傳自訂 skill</strong> 能不能在免費版
-        使用，官方兩份文件記載不一致（說明中心寫含 Free，開發者文件寫 Pro 以上，2026-09-01 查證）。
-        如果設定裡找不到 Skills 頁面，可能是方案限制。
-      </p>
       <a class="btn" href="https://github.com/Legendream/AI-Writing-Skill/releases/latest/download/civic-tech-writing-pipeline.zip">下載 civic-tech-writing-pipeline.zip</a>
       <p style="font-size:0.85rem; color:var(--text-dim); margin-top:10px;">
         內容更新時這個檔案會自動換新，網址不變。
@@ -447,18 +494,29 @@
 
   </div>
 
-  <h2>裝完之後，你會看到什麼</h2>
+  <h2>裝完之後，怎麼確認裝對了</h2>
   <div class="card">
-    <p>照路徑一做完、開新對話後，Claude 不會立刻動筆，而是先問你類似這樣的問題：</p>
-    <ul>
-      <li>「這篇的主題與素材範圍是什麼？」</li>
-      <li>「手上已經有哪些素材？」</li>
-      <li>「有沒有想參考的範文，或想要的語氣？」</li>
-    </ul>
+    <p>照路徑一做完、開新對話後，Claude 不會立刻動筆，而是先問你主題與素材範圍、
+      手上已有哪些素材，以及要寫哪一種文體——<strong>方法論長文</strong>（介紹某個專案或研究
+      具體怎麼做）或<strong>領域資源指南</strong>（盤點某個領域既有的專案與機制設計）。</p>
     <p>
-      <strong>先問問題，就代表裝成功了。</strong>
-      如果它直接開始生文章、完全不問你任何事，代表沒有裝成功，
-      回頭確認一下第 3 步是不是真的上傳好了。
+      <strong>但「有問問題」不能當成裝成功的判準。</strong>
+      Claude 本來就會問問題——就算完全沒裝成功，它也會問得很好、很像回事。
+      我們自己實測時就被騙過：問題問得漂亮，但用的根本不是這套流程。
+    </p>
+    <p><strong>可靠的判準只有一個</strong>——看它回覆的<strong>最後一行是不是以
+      「下一站：」開頭</strong>。例如：</p>
+    <div class="code-block">下一站：素材盤點　建議模型：最強推理模型</div>
+    <p>
+      站名會隨進度變（素材盤點、大綱、初稿⋯⋯），但「下一站：」這個開頭是規則裡寫死的，
+      每一站結尾都會出現。<strong>有這一行就是裝成功了</strong>，沒有就是沒觸發到——
+      回頭確認第 2 步的 zip 是不是真的上傳好了。
+      <strong>路徑二（clone）也用同一個判準</strong>，這行來自規則本身，跟你用哪種裝法無關。
+    </p>
+    <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;">
+      📌 如果你的帳號裡還裝了其他寫作類的 skill，它們可能會搶走觸發。
+      介面上那行灰色的「讀取⋯⋯」標籤<strong>不可靠</strong>——它的文字是臨時生成的，
+      我們實測時看過三種不同寫法，其中一種還指向錯的 skill。一樣以最後那行為準。
     </p>
   </div>
 
