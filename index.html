@@ -427,19 +427,52 @@
           實測發布網址過不過三個硬門檻（人和 AI 找不找得到）</div>
         <div class="stage-who"><span class="who-badge who-you">你</span>
           決定發在哪裡、哪個網址算正本</div>
+        <p style="font-size:0.85rem; color:var(--text-dim); margin:8px 0 0;">
+          <strong>三個硬門檻問的是同一件事：機器人拿不拿得到你的文章。</strong>
+          搜尋引擎和 AI 都是機器人，人要先找得到，才談得上讀。三關卡在不同環節：
+          <strong>進不進得來</strong>、<strong>准不准記下來</strong>（這一頁有沒有被貼上
+          「不要收錄」的標籤）、<strong>拿到的有沒有字</strong>（有些平台的文章是頁面
+          打開後才現場組出來的，你用瀏覽器看一切正常，機器人拿到的卻是一頁空殼）。
+          <br><br>
+          <strong>第一關最容易誤判，而且是反過來的誤判。</strong>
+          機器人分兩種：一種是把你的文章拿去訓練模型的，一種是讀者現在發問、AI 現場跑去
+          讀你文章來回答的。<strong>你在乎的只有後面那種。</strong>
+          很多平台大聲宣布「封鎖 AI 爬蟲」，擋掉的其實是前面那種，對你要的事沒有影響，
+          看到那種公告先別急著換平台。
+          <br><br>
+          第三關則是另一種誤判：你自己看永遠是好的，所以最容易被忽略。
+          實際怎麼測、各平台過不過，見那包裡的
+          <a href="https://github.com/Legendream/AI-Writing-Skill/blob/main/civic-tech-writing-pipeline/%E7%99%BC%E5%B8%83%E6%8C%87%E5%BC%95.md" target="_blank" rel="noopener"><code>發布指引.md</code></a>。
+        </p>
       </div>
     </div>
 
     <p style="font-size:0.9rem; color:var(--text-dim); margin:16px 0 0;">
-      每一站做完才會進下一站，AI 不會自己搶著往下衝——但最後為文章負責的是你，
-      AI 整理出來的都算草稿，交付前的查證還是要靠你自己動手。
+      預設是每一站做完停下來等你確認，AI 不會自己搶著往下衝（哪幾站可以併著跑見下方）。
+      但最後為文章負責的是你，AI 整理出來的都算草稿，交付前的查證還是要靠你自己動手。
       <br><br>
       <strong>第 8 站只有要對外發表才需要走</strong>：如果你寫的是內部文件、不打算公開，
       走到第 7 站就結束。
       <br><br>
-      這裡的分工以 repo 裡的 <code>docs/人機分工與外部回饋.md</code> 為準；
-      第 8 站發布的細節見 <code>civic-tech-writing-pipeline/發布指引.md</code>。
+      這裡的分工以 repo 裡的 <code>docs/人機分工與外部回饋.md</code> 為準。
     </p>
+
+    <div style="background:var(--accent-bg); border-radius:8px; padding:16px 18px; margin-top:18px;">
+      <p style="margin-bottom:10px;"><strong>趕時間的話，哪幾站可以省？</strong></p>
+      <ul style="margin-top:0; margin-bottom:10px;">
+        <li><strong>這三站不能略</strong>：第 1 站素材盤點、第 4 站事實查核、第 6 站交付前驗收。
+          <br>這三站是這套東西唯一的賣點。略掉它們，就跟直接叫 AI 寫一篇沒有差別</li>
+        <li><strong>這三站可以併著跑</strong>：第 2 站大綱、第 3 站初稿、第 5 站風格套用。
+          <br>趕時間可以併成一輪。但併掉的只是「停下來等你確認」的節奏，
+          <strong>該產出的東西一樣都不能少</strong>。
+          <br>寫方法論長文的話，第 2 站那張主張表仍然要停下來給你確認，那一關不併</li>
+        <li><strong>第 7 站精修，改多改少由你決定</strong>，但「人看過並且負責」這件事不能略</li>
+      </ul>
+      <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;">
+        最常被跳過、後果也最嚴重的是第 6 站交付前驗收。
+        AI 對自己工作的自評不可信，這是我們實測撞出來的。
+      </p>
+    </div>
   </div>
 
   <h2>開始前你要準備什麼</h2>
@@ -537,6 +570,12 @@ https://github.com/Legendream/AI-Writing-Skill</div>
         同一次實測也讓我們確認了一件事：<strong>流程跑得完，但交付前那道獨立驗收不能省</strong>。
         怎麼做見下面的常見問題。
       </p>
+      <p style="font-size:0.9rem;">
+        <strong>你的素材放這個資料夾底下就好</strong>，開一個叫 <code>素材</code> 的子資料夾，
+        連結、訪談筆記、PDF 都丟進去。這類工具讀得到你電腦上的檔案，
+        所以素材不用貼進對話，跟它說「素材在素材資料夾」就行。
+        （走路徑一的人不用做這件事，素材直接丟進對話裡。）
+      </p>
       <p>抓完之後，<strong>每次開始寫的時候跟 AI 說一句</strong>：</p>
       <div class="code-block">照你剛抓下來那包裡的
 civic-tech-writing-pipeline/SKILL.md 進行</div>
@@ -552,6 +591,15 @@ civic-tech-writing-pipeline/SKILL.md 進行</div>
         （Claude Code 是 <code>~/.claude/skills/</code>，Antigravity 是
         <code>~/.gemini/config/skills/</code>），放進去它就會自己叫出來。
         <strong>這個做法我們還沒實測</strong>；上面那條抓到一般資料夾的做法才是驗證過的。
+      </p>
+      <p style="font-size:0.85rem; color:var(--text-dim);">
+        📌 <strong>用 Claude Code 的話，那包裡還有一份現成的檢查員設定檔</strong>
+        （<code>agents/</code> 資料夾），裝上去就能派它做第 6 站的獨立驗收。
+        怎麼裝寫在 <code>agents/README.md</code>。
+        <br><strong>這是加分項，不是必需品</strong>：真正有效的是
+        <code>checklists/</code> 那份驗收條件清單，不是這個設定檔。
+        用聊天介面的人裝不了它，改成開新對話貼清單就好，
+        <strong>那個做法我們還沒實測過</strong>，寫在下面的常見問題裡。
       </p>
       <a class="btn-secondary" href="https://github.com/Legendream/AI-Writing-Skill" target="_blank" rel="noopener">前往 GitHub repo</a>
     </div>
