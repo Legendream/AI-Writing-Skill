@@ -10,6 +10,10 @@
 <meta property="og:title" content="哪幾段交給 AI，哪幾段人自己判斷">
 <meta property="og:description" content="哪幾段交給 AI、哪幾段一定要人自己判斷，全部寫清楚。">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://write.claire-cheng.com/">
+
+<!-- 正規網址。網域以根目錄 CNAME 為準，改網域時這裡與 og:url 要一起改 -->
+<link rel="canonical" href="https://write.claire-cheng.com/">
 
 <style>
   :root {
@@ -226,14 +230,6 @@
     font-size: 0.85rem;
   }
 
-  /* 標示「還沒填入真實網址」的元件，故意跟正常按鈕長得不一樣，
-     避免上線前忘記替換掉還被誤以為是可用的連結 */
-  .placeholder {
-    background: transparent;
-    color: #b5451f;
-    border: 1px dashed #b5451f;
-  }
-
   /* 「開始前你要準備什麼」的工具對照表。深色模式的框線走 --border，
      不要寫死顏色，否則暗底會看不見。 */
   table {
@@ -322,7 +318,7 @@
     <p>走完一輪，你手上會有這些東西。<strong>只有第一份會公開發表</strong>，其餘留在你自己手上：</p>
     <ul>
       <li><strong>文章本體</strong>：可以直接發表的那一份</li>
-      <li><strong>查核總表</strong>：有人質疑你哪一句時，翻得出出處，還有當初標的把握程度</li>
+      <li><strong>查核總表</strong>：有人質疑你哪一句時，翻得出出處，還有當初標的依據等級</li>
       <li><strong>引用網址清單</strong>：一年後連結死掉，知道要修哪幾條</li>
       <li><strong>執行環境自述</strong>：半年後回頭改，知道當初用哪個工具寫的、哪些查核是人工補的</li>
       <li><strong>規則提案清單</strong>：這次撞到的坑寫下來，下次不用再撞一次</li>
@@ -386,9 +382,9 @@
       <div>
         <div class="stage-title">事實查核</div>
         <div class="stage-who"><span class="who-badge who-ai">AI</span>
-          逐條核對出處，標示每項查證的可信程度</div>
+          逐條核對出處，標示每項查證的依據等級</div>
         <div class="stage-who"><span class="who-badge who-you">你</span>
-          查證程度偏低的內容，由你做最後判斷</div>
+          依據等級偏低的內容，由你做最後判斷</div>
       </div>
     </div>
 
@@ -553,7 +549,7 @@
           <br>找不到這個頁面的話，直接在設定裡搜尋 <code>Skills</code></li>
         <li>開新對話，跟 Claude 說「<strong>我想寫一篇公民科技相關的文章</strong>」</li>
       </ol>
-      <a class="btn" href="https://github.com/Legendream/AI-Writing-Skill/releases/latest/download/civic-tech-writing-pipeline.zip">下載 civic-tech-writing-pipeline.zip</a>
+      <a class="btn" href="https://github.com/Legendream/AI-Writing-Skill/releases/latest/download/civic-tech-writing-pipeline.zip" target="_blank" rel="noopener">下載 civic-tech-writing-pipeline.zip</a>
       <p style="font-size:0.85rem; color:var(--text-dim); margin-top:10px;">
         內容更新時這個檔案會自動換新，網址不變。
       </p>
