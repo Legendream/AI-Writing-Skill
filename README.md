@@ -40,7 +40,7 @@
   |---|---|---|
   | **claude.ai**（Pro 以上） | 上傳 zip 裝成 Skill（路徑一） | ✅ **2026-09-02 實測可用**。用路徑一教的那句話實測，回覆最後一行出現「下一站：」，四種說法都叫得出來 |
   | **Claude Code、Antigravity** 等讀得到檔案的工具 | clone 整個 repo（路徑二） | ⚠️ 2026-08-18 用 Antigravity 測過。裝得起來，**流程跑得完，但交付前那道獨立驗收不能省**：當時沒過的地方集中在事實查核 |
-  | **ChatGPT、Gemini** | 每次對話把規則自己帶進去 | ❌ **我們沒有實測過**，所以不列為安裝路徑。可以把 `checklists/` 當成自己用的人工檢查表 |
+  | **ChatGPT、Gemini** | 自己建一個 Custom GPT 或 Gem，把 `SKILL.md` 與 `templates/` 上傳成知識檔 | ❌ **我們沒有實測過**，所以不算我們驗證過的路徑。可以把 `checklists/` 當成自己用的人工檢查表 |
 
   > 📌 **上傳自訂 skill 從 Pro 方案開始**，所以路徑一需要 Pro 以上
   > （依 [Claude 開發者文件](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)，2026-09-02 查證）。
@@ -109,16 +109,24 @@
 
 **不是只有 claude.ai 能整包安裝。** Claude Code、Antigravity 這類讀得到檔案的工具，
 用上面的路徑二就能裝起來，不需要把規則內容貼進對話。
-真正需要手動貼內容的，是純聊天介面：規則得靠你每次對話自己帶進去。
+純聊天介面沒有現成的 skill 可以裝，可以自己建一個帶知識檔的助理代替，
+設計上同樣是建一次、之後開對話就有。
 **底下這兩種做法我們都沒有實測過**，列出來是給你自己試的起點，不是我們驗證過的路徑：
 
-- **ChatGPT**：單次使用把 `civic-tech-writing-pipeline/SKILL.md`（不是根目錄那份路標）
-  與所選模板貼進對話；重複使用可建立 Custom GPT，把該份 `SKILL.md` 與 `templates/`
-  上傳為知識檔，指示欄寫明
+- **ChatGPT**：建立 Custom GPT，把 `civic-tech-writing-pipeline/SKILL.md`
+  （不是根目錄那份路標）與 `templates/` 上傳為知識檔，指示欄寫明
   「依 SKILL.md 的流程與查核關卡協作寫文章」
-- **Gemini**：作法相同，可貼進對話，或建立 Gem 並上傳檔案
+- **Gemini**：作法相同，建立 Gem 並上傳同樣那幾份檔案
 - **不用 AI**：`checklists/` 可以當人工檢查表，`templates/` 可以當寫作大綱，
   流程本身是工具中立的
+
+> **Custom GPT 與 Gem 這兩種，都不要用「把 `SKILL.md` 整份貼進對話框」代替。**
+> 它有 33,042 字元（2026-09-03 量），而聊天對話不會記住，下一次開新對話得再貼一次。
+>
+> 至於上傳成知識檔，讀法是「需要時撈相關片段」、不是從頭讀完，
+> 所以**建了 Custom GPT 或 Gem，也不代表流程會被照順序走**。
+> **這一段是推論，我們沒有實測過**，跟網站常見問題那一題同一個把握度。
+> 交付前那份檢查清單還是要你自己拿著對。
 
 #### 交接給另一個 AI 時，直接複製這段
 
