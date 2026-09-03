@@ -313,16 +313,53 @@
     讓讀者一眼看出這篇解不解決他的問題，文末的自我檢查則是他可以直接帶走的清單。
   </p>
 
+  <h2>它寫哪兩種文章</h2>
+  <div class="card">
+    <p>開始寫之前，AI 會先問你要寫哪一種。差別在這裡：</p>
+
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col"><span class="visually-hidden">比較項目</span></th>
+          <th scope="col">方法論長文</th>
+          <th scope="col">領域資源指南</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" style="white-space:nowrap;">主角是</th>
+          <td>一套可以照著做的方法</td>
+          <td>一批既有的專案與工具</td>
+        </tr>
+        <tr>
+          <th scope="row" style="white-space:nowrap;">讀者看完會</th>
+          <td>知道自己該怎麼做</td>
+          <td>知道別人怎麼做的，也知道可以抄哪一段</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>拿一個真的題目來看。<a href="https://github.com/Legendream/AI-Writing-Skill/blob/main/civic-tech-writing-pipeline/examples/resource-follow-the-money.md" target="_blank" rel="noopener">《政府的錢花去哪了？》</a>是一篇領域資源指南。它盤點台灣有哪些查詢政府預算、標案、補助的平台，一個一個講它們能查到什麼、怎麼查，讓你在動手之前先知道哪些輪子已經有人造好了。</p>
+
+    <p>同一個題目寫成方法論長文的話，內容會變成「我怎麼把一份預算 PDF 拆成查得動的資料」，讀者照著步驟做，就能處理自己手上的檔案。</p>
+
+    <p>選領域資源指南要記得，它是寫給正在規劃專案的人看的，不是寫給想直接拿工具來用的一般民眾。這兩種人要找的東西不一樣。</p>
+
+    <p style="margin-bottom:0;">兩種的完整規格（目的、讀者、篇幅、結構）寫在 <a href="https://github.com/Legendream/AI-Writing-Skill/blob/main/civic-tech-writing-pipeline/SKILL.md" target="_blank" rel="noopener"><code>SKILL.md</code></a> 的「文章類型」一節。</p>
+  </div>
+
   <h2>你會做出什麼</h2>
   <div class="card">
     <p>走完一輪，你手上會有這些東西。<strong>只有第一份會公開發表</strong>，其餘留在你自己手上：</p>
     <ul>
-      <li><strong>文章本體</strong>：可以直接發表的那一份</li>
-      <li><strong>查核總表</strong>：有人質疑你哪一句時，翻得出出處，還有當初標的依據等級</li>
-      <li><strong>引用網址清單</strong>：一年後連結死掉，知道要修哪幾條</li>
-      <li><strong>執行環境自述</strong>：半年後回頭改，知道當初用哪個工具寫的、哪些查核是人工補的</li>
-      <li><strong>規則提案清單</strong>：這次撞到的坑寫下來，下次不用再撞一次</li>
-      <li><strong>主張表</strong>（只有寫方法論長文時會有）：每一節到底想講什麼，一張表看完</li>
+      <li><strong>文章本體</strong>（③ 初稿）：可以直接發表的那一份</li>
+      <li><strong>查核總表</strong>（④ 事實查核）：有人質疑你哪一句時，翻得出出處，還有當初標的依據等級</li>
+      <li><strong>引用網址清單</strong>（④ 事實查核）：一年後連結死掉，知道要修哪幾條</li>
+      <li><strong>執行環境自述</strong>（開始前，① 之前）：AI 開工前先自報家門，寫下它用什麼工具讀資料、從哪裡連網、有沒有子代理可以派、手上最強的推理模型是哪一個。半年後回頭改，你就知道哪些查核是人工補的</li>
+      <li><strong>規則提案清單</strong>（⑥ 交付前驗收）：這次撞到的坑寫下來，下次不用再撞一次</li>
+      <li><strong>主張表</strong>（② 大綱，只有寫方法論長文時會有）：每一節到底想講什麼，一張表看完</li>
     </ul>
     <p style="margin-bottom:0;">
       重點是：你拿到的不只是一篇文章，是<strong>一篇文章 ＋ 一份可以攤開給人看的稽核軌跡</strong>。
@@ -612,8 +649,7 @@ civic-tech-writing-pipeline/SKILL.md 進行</div>
   <h2>裝完之後，怎麼確認裝對了</h2>
   <div class="card">
     <p>照路徑一做完、開新對話後，Claude 不會立刻動筆，而是先問你主題與素材範圍、
-      手上已有哪些素材，以及要寫哪一種文體：<strong>方法論長文</strong>（介紹某個專案或研究
-      具體怎麼做）或<strong>領域資源指南</strong>（盤點某個領域既有的專案與機制設計）。</p>
+      手上已有哪些素材，以及要寫哪一種文體（兩種差在哪，見前面的「它寫哪兩種文章」）。</p>
     <p>
       <strong>但「有問問題」不能當成裝成功的判準。</strong>
       Claude 本來就會問問題。就算完全沒裝成功，它也會問得很好、很像回事。
