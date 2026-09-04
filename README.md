@@ -337,6 +337,7 @@ SKILL.md                         ← 【路標】不是流程本體，指向下�
 
 civic-tech-writing-pipeline/     ← 【交付主體】整個資料夾就是 skill，要用就複製它
 ├── SKILL.md                     流程本體：文章類型、階段門檻、查核關卡、格式規範
+├── references/                  各站的判準、正反例與立規緣由（SKILL.md 只留規則本體）
 ├── 發布指引.md                   文章放哪裡才被人與 AI 找得到（含平台實測比較）
 ├── templates/                   兩種文體的模板＋該用哪一份
 ├── checklists/                  交付前的獨立驗收條件（三種用法：代理／新對話／人工）
